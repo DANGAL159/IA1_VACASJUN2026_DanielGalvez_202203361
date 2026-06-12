@@ -1,0 +1,17 @@
+/* App.css - Estilos específicos complementarios */
+/* La mayoría de estilos ahora están centralizados en index.css */
+
+/* Ajustes menores específicos del panel si los necesitas */
+.app-header {
+  position: relative;
+}
+
+/* Animación suave al cambiar vistas */
+.app-main > * {
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
