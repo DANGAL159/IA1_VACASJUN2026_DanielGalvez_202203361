@@ -1,0 +1,162 @@
+<mxfile host="65bd71144e">
+    <diagram name="Arquitectura Doctor Byte" id="arquitectura-doctor-byte">
+        <mxGraphModel dx="2150" dy="1408" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1600" pageHeight="1200" background="none" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="frontend" value="CAPA DE PRESENTACIÓN - Frontend (React + Vite)" style="swimlane;startSize=30;fillColor=#e3f2fd;strokeColor=#1976d2;fontStyle=1;fontSize=14;horizontal=1;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="40" width="1520" height="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="ui" value="Interfaz de Usuario&#xa;Panel de Administración" style="rounded=1;whiteSpace=wrap;fillColor=#bbdefb;strokeColor=#1976d2;" parent="frontend" vertex="1">
+                    <mxGeometry x="40" y="60" width="200" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="sintomas" value="Selector de Síntomas&#xa;Formulario Diagnóstico" style="rounded=1;whiteSpace=wrap;fillColor=#bbdefb;strokeColor=#1976d2;" parent="frontend" vertex="1">
+                    <mxGeometry x="280" y="60" width="220" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="state" value="App.jsx&#xa;Gestión de Estado&#xa;(Síntomas, Historial)" style="rounded=1;whiteSpace=wrap;fillColor=#bbdefb;strokeColor=#1976d2;" parent="frontend" vertex="1">
+                    <mxGeometry x="540" y="60" width="220" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="toast" value="Toast.jsx&#xa;Notificaciones" style="rounded=1;whiteSpace=wrap;fillColor=#bbdefb;strokeColor=#1976d2;" parent="frontend" vertex="1">
+                    <mxGeometry x="800" y="60" width="180" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="historial" value="Tabla de Historial&#xa;Resultados Diagnóstico" style="rounded=1;whiteSpace=wrap;fillColor=#bbdefb;strokeColor=#1976d2;" parent="frontend" vertex="1">
+                    <mxGeometry x="1020" y="60" width="220" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="config_ui" value="Configuración Bot&#xa;Telegram Settings" style="rounded=1;whiteSpace=wrap;fillColor=#bbdefb;strokeColor=#1976d2;" parent="frontend" vertex="1">
+                    <mxGeometry x="1280" y="60" width="200" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;" parent="frontend" source="ui" target="sintomas" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;" parent="frontend" source="sintomas" target="state" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;" parent="frontend" source="state" target="historial" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="650" y="46"/>
+                            <mxPoint x="1130" y="46"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="backend" value="CAPA DE INTEGRACIÓN - Backend MVC (Python + FastAPI)" style="swimlane;startSize=30;fillColor=#f3e5f5;strokeColor=#7b1fa2;fontStyle=1;fontSize=14;horizontal=1;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="320" width="1520" height="320" as="geometry"/>
+                </mxCell>
+                <mxCell id="ctrl_group" value="Controladores - Routers" style="swimlane;startSize=25;fillColor=#fce4ec;strokeColor=#c2185b;fontStyle=1;" parent="backend" vertex="1">
+                    <mxGeometry x="40" y="60" width="480" height="220" as="geometry"/>
+                </mxCell>
+                <mxCell id="conocimiento_py" value="conocimiento.py&#xa;(CRUD síntomas, fallas,&#xa;recomendaciones, reglas)" style="rounded=1;whiteSpace=wrap;fillColor=#f8bbd0;strokeColor=#c2185b;" parent="ctrl_group" vertex="1">
+                    <mxGeometry x="20" y="45" width="200" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="diagnostico_py" value="diagnostico.py&#xa;(Motor de Inferencia,&#xa;Historial)" style="rounded=1;whiteSpace=wrap;fillColor=#f8bbd0;strokeColor=#c2185b;" parent="ctrl_group" vertex="1">
+                    <mxGeometry x="240" y="45" width="200" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="configuracion_py" value="configuracion.py&#xa;(Settings Bot, Plantillas)" style="rounded=1;whiteSpace=wrap;fillColor=#f8bbd0;strokeColor=#c2185b;" parent="ctrl_group" vertex="1">
+                    <mxGeometry x="20" y="140" width="420" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="model_group" value="Modelos - Validación" style="swimlane;startSize=25;fillColor=#e8f5e9;strokeColor=#388e3c;fontStyle=1;" parent="backend" vertex="1">
+                    <mxGeometry x="560" y="60" width="240" height="220" as="geometry"/>
+                </mxCell>
+                <mxCell id="schemas" value="schemas.py&#xa;Esquemas Pydantic&#xa;(SolicitudDiagnostico,&#xa;Sintoma, Falla, ReglaFalla)" style="rounded=1;whiteSpace=wrap;fillColor=#c8e6c9;strokeColor=#388e3c;" parent="model_group" vertex="1">
+                    <mxGeometry x="20" y="60" width="200" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="svc_group" value="Servicios - Lógica de Negocio" style="swimlane;startSize=25;fillColor=#fff9c4;strokeColor=#f9a825;fontStyle=1;" parent="backend" vertex="1">
+                    <mxGeometry x="840" y="60" width="320" height="220" as="geometry"/>
+                </mxCell>
+                <mxCell id="prolog_svc" value="prolog_service.py&#xa;Traductor JSON ↔ Prolog&#xa;(PySwip)" style="rounded=1;whiteSpace=wrap;fillColor=#fff59d;strokeColor=#f9a825;" parent="svc_group" vertex="1">
+                    <mxGeometry x="20" y="45" width="130" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="telegram_svc" value="telegram_service.py&#xa;Notificaciones&#xa;Sincronización Usuarios" style="rounded=1;whiteSpace=wrap;fillColor=#fff59d;strokeColor=#f9a825;" parent="svc_group" vertex="1">
+                    <mxGeometry x="170" y="45" width="130" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="config_svc" value="config_service.py&#xa;Gestor .env&#xa;Plantillas HTML" style="rounded=1;whiteSpace=wrap;fillColor=#fff59d;strokeColor=#f9a825;" parent="svc_group" vertex="1">
+                    <mxGeometry x="20" y="140" width="280" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="cfg_group" value="Configuración y Persistencia" style="swimlane;startSize=25;fillColor=#efebe9;strokeColor=#5d4037;fontStyle=1;" parent="backend" vertex="1">
+                    <mxGeometry x="1200" y="60" width="280" height="220" as="geometry"/>
+                </mxCell>
+                <mxCell id="database" value="database.py&#xa;Gestor I/O UTF-8&#xa;Volcado Inteligente&#xa;Preserva reglas estáticas" style="rounded=1;whiteSpace=wrap;fillColor=#d7ccc8;strokeColor=#5d4037;" parent="cfg_group" vertex="1">
+                    <mxGeometry x="20" y="60" width="240" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="b1" style="edgeStyle=orthogonalEdgeStyle;" parent="backend" source="ctrl_group" target="model_group" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="b2" style="edgeStyle=orthogonalEdgeStyle;exitX=0.75;exitY=0;exitDx=0;exitDy=0;" parent="backend" source="ctrl_group" target="svc_group" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="400" y="47"/>
+                            <mxPoint x="1000" y="47"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="b3" style="edgeStyle=orthogonalEdgeStyle;" parent="backend" source="svc_group" target="cfg_group" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="prolog" value="CAPA DE CONOCIMIENTO - Motor Lógico (SWI-Prolog)" style="swimlane;startSize=30;fillColor=#fff3e0;strokeColor=#f57c00;fontStyle=1;fontSize=14;horizontal=1;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="740" width="1520" height="240" as="geometry"/>
+                </mxCell>
+                <mxCell id="pl_file" value="doctor_byte.pl" style="shape=cylinder3;whiteSpace=wrap;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#ffe0b2;strokeColor=#f57c00;fontStyle=1;fontSize=14;" parent="prolog" vertex="1">
+                    <mxGeometry x="40" y="60" width="200" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="hechos" value="Hechos Dinámicos&#xa;sintoma/1, falla/2,&#xa;recomendacion/2,&#xa;regla_falla/2, historial/5&#xa;(Modificables en runtime)" style="rounded=1;whiteSpace=wrap;fillColor=#ffcc80;strokeColor=#f57c00;" parent="prolog" vertex="1">
+                    <mxGeometry x="300" y="60" width="280" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="reglas" value="Reglas Estáticas&#xa;diagnosticar/4&#xa;subconjunto/2&#xa;(Motor de Inferencia)" style="rounded=1;whiteSpace=wrap;fillColor=#ffcc80;strokeColor=#f57c00;" parent="prolog" vertex="1">
+                    <mxGeometry x="620" y="60" width="280" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="crud_pl" value="Operaciones CRUD&#xa;assertz/1, retractall/1&#xa;agregar_sintoma/1,&#xa;eliminar_falla/1" style="rounded=1;whiteSpace=wrap;fillColor=#ffcc80;strokeColor=#f57c00;" parent="prolog" vertex="1">
+                    <mxGeometry x="940" y="60" width="280" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="corte" value="Operador de Corte (!)&#xa;Compromiso con primera&#xa;solución válida" style="rounded=1;whiteSpace=wrap;fillColor=#ffcc80;strokeColor=#f57c00;" parent="prolog" vertex="1">
+                    <mxGeometry x="1260" y="60" width="220" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="telegram" value="INTEGRACIÓN EXTERNA - Telegram Bot API" style="swimlane;startSize=30;fillColor=#e8eaf6;strokeColor=#3f51b5;fontStyle=1;fontSize=14;horizontal=1;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="1080" width="1520" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="tg_api" value="REST API Telegram&#xa;sendMessage,&#xa;getUpdates" style="rounded=1;whiteSpace=wrap;fillColor=#c5cae9;strokeColor=#3f51b5;" parent="telegram" vertex="1">
+                    <mxGeometry x="40" y="50" width="280" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="tg_usuario" value="Notificación Personal&#xa;@username → chat_id" style="rounded=1;whiteSpace=wrap;fillColor=#c5cae9;strokeColor=#3f51b5;" parent="telegram" vertex="1">
+                    <mxGeometry x="380" y="50" width="280" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="tg_grupo" value="Log Centralizado&#xa;Grupo de Soporte Técnico" style="rounded=1;whiteSpace=wrap;fillColor=#c5cae9;strokeColor=#3f51b5;" parent="telegram" vertex="1">
+                    <mxGeometry x="720" y="50" width="280" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="tg_sync" value="Sincronización Dinámica&#xa;Mapeo @user → chat_id" style="rounded=1;whiteSpace=wrap;fillColor=#c5cae9;strokeColor=#3f51b5;" parent="telegram" vertex="1">
+                    <mxGeometry x="1060" y="50" width="280" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="l1" value="HTTP / REST (JSON)" style="edgeStyle=orthogonalEdgeStyle;fontStyle=1;fontSize=12;strokeWidth=2;strokeColor=#1976d2;" parent="1" source="frontend" target="ctrl_group" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="l2" value="PySwip&#xa;(Consultas Lógicas)" style="edgeStyle=orthogonalEdgeStyle;fontStyle=1;fontSize=12;strokeWidth=2;strokeColor=#f9a825;" parent="1" source="prolog_svc" target="pl_file" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="869" y="465"/>
+                            <mxPoint x="869" y="670"/>
+                            <mxPoint x="180" y="670"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="l3" value="Lectura / Escritura&#xa;Archivo .pl (UTF-8)" style="edgeStyle=orthogonalEdgeStyle;fontStyle=1;fontSize=12;strokeWidth=2;strokeColor=#5d4037;entryX=0.855;entryY=0;entryDx=0;entryDy=4.35;entryPerimeter=0;" parent="1" source="database" target="pl_file" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1360" y="710"/>
+                            <mxPoint x="250" y="710"/>
+                            <mxPoint x="250" y="804"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="l4" value="HTTP POST&#xa;(Notificaciones HTML)" style="edgeStyle=orthogonalEdgeStyle;fontStyle=1;fontSize=12;strokeWidth=2;strokeColor=#3f51b5;" parent="1" source="telegram_svc" target="telegram" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1115" y="417"/>
+                            <mxPoint x="1643" y="417"/>
+                            <mxPoint x="1643" y="1000"/>
+                            <mxPoint x="800" y="1000"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
