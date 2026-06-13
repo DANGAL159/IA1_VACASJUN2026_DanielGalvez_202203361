@@ -1,0 +1,147 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.0.6 Chrome/138.0.7204.100 Electron/37.2.3 Safari/537.36" version="28.0.6">
+  <diagram name="Arquitectura SmartBot FAQ" id="arquitectura-smartbot-faq">
+    <mxGraphModel dx="2371" dy="1015" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1600" pageHeight="1200" background="none" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="frontend" value="CAPA DE PRESENTACION - Frontend (React + Vite + Nginx)" style="swimlane;startSize=30;fillColor=#e3f2fd;strokeColor=#1976d2;fontStyle=1;fontSize=14;horizontal=1;" parent="1" vertex="1">
+          <mxGeometry x="40" y="40" width="1520" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="ui_admin" value="Panel Administrativo&#xa;Gestion de FAQ" style="rounded=1;whiteSpace=wrap;fillColor=#bbdefb;strokeColor=#1976d2;" parent="frontend" vertex="1">
+          <mxGeometry x="40" y="60" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ui_categorias" value="CRUD Categorias&#xa;Agrupacion de Preguntas" style="rounded=1;whiteSpace=wrap;fillColor=#bbdefb;strokeColor=#1976d2;" parent="frontend" vertex="1">
+          <mxGeometry x="280" y="60" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ui_preguntas" value="CRUD Preguntas FAQ&#xa;Base de Conocimiento" style="rounded=1;whiteSpace=wrap;fillColor=#bbdefb;strokeColor=#1976d2;" parent="frontend" vertex="1">
+          <mxGeometry x="520" y="60" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ui_config" value="Configuracion del Bot&#xa;Tokens y Parametros" style="rounded=1;whiteSpace=wrap;fillColor=#bbdefb;strokeColor=#1976d2;" parent="frontend" vertex="1">
+          <mxGeometry x="760" y="60" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ui_dashboard" value="Dashboard Estadistico&#xa;Metricas Agregadas" style="rounded=1;whiteSpace=wrap;fillColor=#bbdefb;strokeColor=#1976d2;" parent="frontend" vertex="1">
+          <mxGeometry x="1000" y="60" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ui_historial" value="Tabla de Auditoria&#xa;Historial de Consultas" style="rounded=1;whiteSpace=wrap;fillColor=#bbdefb;strokeColor=#1976d2;" parent="frontend" vertex="1">
+          <mxGeometry x="1240" y="60" width="240" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="backend" value="CAPA DE INTEGRACION - Backend MVC (Python 3.11 + FastAPI + Uvicorn)" style="swimlane;startSize=30;fillColor=#f3e5f5;strokeColor=#7b1fa2;fontStyle=1;fontSize=14;horizontal=1;" parent="1" vertex="1">
+          <mxGeometry x="40" y="280" width="1520" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="ctrl_group" value="Controladores (routers/)" style="swimlane;startSize=25;fillColor=#fce4ec;strokeColor=#c2185b;fontStyle=1;" parent="backend" vertex="1">
+          <mxGeometry x="40" y="60" width="700" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="router_auth" value="auth.py&#xa;Login (bcrypt)" style="rounded=1;whiteSpace=wrap;fillColor=#f8bbd0;strokeColor=#c2185b;" parent="ctrl_group" vertex="1">
+          <mxGeometry x="20" y="40" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="router_categorias" value="categorias.py&#xa;CRUD Categorias" style="rounded=1;whiteSpace=wrap;fillColor=#f8bbd0;strokeColor=#c2185b;" parent="ctrl_group" vertex="1">
+          <mxGeometry x="150" y="40" width="130" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="router_preguntas" value="preguntas.py&#xa;CRUD Preguntas" style="rounded=1;whiteSpace=wrap;fillColor=#f8bbd0;strokeColor=#c2185b;" parent="ctrl_group" vertex="1">
+          <mxGeometry x="290" y="40" width="130" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="router_config" value="configuracion.py&#xa;Settings del Bot" style="rounded=1;whiteSpace=wrap;fillColor=#f8bbd0;strokeColor=#c2185b;" parent="ctrl_group" vertex="1">
+          <mxGeometry x="430" y="40" width="130" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="router_estadisticas" value="estadisticas.py&#xa;Historial y Resumen" style="rounded=1;whiteSpace=wrap;fillColor=#f8bbd0;strokeColor=#c2185b;" parent="ctrl_group" vertex="1">
+          <mxGeometry x="570" y="40" width="110" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="model_group" value="Modelos ORM (models/)" style="swimlane;startSize=25;fillColor=#e8f5e9;strokeColor=#388e3c;fontStyle=1;" parent="backend" vertex="1">
+          <mxGeometry x="760" y="60" width="320" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="model_tables" value="USUARIOS_ADMIN&#xa;CATEGORIAS&#xa;PREGUNTAS_FAQ&#xa;HISTORIAL_CONSULTAS&#xa;CONFIGURACION_BOT" style="rounded=1;whiteSpace=wrap;fillColor=#c8e6c9;strokeColor=#388e3c;" parent="model_group" vertex="1">
+          <mxGeometry x="20" y="35" width="280" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="svc_group" value="Servicios (services/)" style="swimlane;startSize=25;fillColor=#fff9c4;strokeColor=#f9a825;fontStyle=1;" parent="backend" vertex="1">
+          <mxGeometry x="1100" y="60" width="380" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="svc_bot" value="telegram_daemon.py&#xa;Long Polling Manual&#xa;getUpdates + offset" style="rounded=1;whiteSpace=wrap;fillColor=#fff59d;strokeColor=#f9a825;" parent="svc_group" vertex="1">
+          <mxGeometry x="20" y="35" width="160" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="svc_search" value="search_service.py&#xa;Motor ILIKE&#xa;Busqueda de Texto" style="rounded=1;whiteSpace=wrap;fillColor=#fff59d;strokeColor=#f9a825;" parent="svc_group" vertex="1">
+          <mxGeometry x="200" y="35" width="160" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="daemon_group" value="Daemon (Hilo Secundario - threading.Thread)" style="swimlane;startSize=25;fillColor=#fff3e0;strokeColor=#ef6c00;fontStyle=1;" parent="backend" vertex="1">
+          <mxGeometry x="40" y="220" width="1440" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="daemon_loop" value="Bucle Principal&#xa;Long Polling Activo&#xa;time.sleep (reposo)" style="rounded=1;whiteSpace=wrap;fillColor=#ffcc80;strokeColor=#ef6c00;" parent="daemon_group" vertex="1">
+          <mxGeometry x="20" y="40" width="240" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="daemon_parser" value="Parser de Comandos&#xa;/preguntas&#xa;/categorias&#xa;callback_query" style="rounded=1;whiteSpace=wrap;fillColor=#ffcc80;strokeColor=#ef6c00;" parent="daemon_group" vertex="1">
+          <mxGeometry x="280" y="40" width="240" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="daemon_inline" value="Constructor Inline Keyboard&#xa;reply_markup JSON&#xa;Menus Dinamicos" style="rounded=1;whiteSpace=wrap;fillColor=#ffcc80;strokeColor=#ef6c00;" parent="daemon_group" vertex="1">
+          <mxGeometry x="540" y="40" width="280" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="daemon_audit" value="Auditoria Inmediata&#xa;Escritura Tabla Historial&#xa;Notificacion HTML a Grupo" style="rounded=1;whiteSpace=wrap;fillColor=#ffcc80;strokeColor=#ef6c00;" parent="daemon_group" vertex="1">
+          <mxGeometry x="840" y="40" width="280" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="daemon_fallback" value="Mensaje Fallback&#xa;Control de Errores&#xa;Sin Coincidencias" style="rounded=1;whiteSpace=wrap;fillColor=#ffcc80;strokeColor=#ef6c00;" parent="daemon_group" vertex="1">
+          <mxGeometry x="1140" y="40" width="280" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="database" value="CAPA DE PERSISTENCIA - Base de Datos (PostgreSQL 15 + SQLAlchemy)" style="swimlane;startSize=30;fillColor=#efebe9;strokeColor=#5d4037;fontStyle=1;fontSize=14;horizontal=1;" parent="1" vertex="1">
+          <mxGeometry x="40" y="740" width="1520" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="db_seed" value="seed_data.py&#xa;Datos Iniciales&#xa;(3 Categorias, 20 Preguntas)" style="shape=cylinder3;whiteSpace=wrap;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#d7ccc8;strokeColor=#5d4037;fontStyle=1;fontSize=12;" parent="database" vertex="1">
+          <mxGeometry x="40" y="50" width="240" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="db_tablas" value="Tablas Relacionales&#xa;USUARIOS_ADMIN, CATEGORIAS,&#xa;PREGUNTAS_FAQ,&#xa;HISTORIAL_CONSULTAS,&#xa;CONFIGURACION_BOT" style="rounded=1;whiteSpace=wrap;fillColor=#d7ccc8;strokeColor=#5d4037;" parent="database" vertex="1">
+          <mxGeometry x="320" y="50" width="320" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="db_ilike" value="Indice ILIKE&#xa;Busqueda de Texto&#xa;Insensible a Mayusculas" style="rounded=1;whiteSpace=wrap;fillColor=#d7ccc8;strokeColor=#5d4037;" parent="database" vertex="1">
+          <mxGeometry x="680" y="50" width="320" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="db_audit" value="Auditoria Inmutable&#xa;Timestamp, Usuario,&#xa;Entrada y Salida" style="rounded=1;whiteSpace=wrap;fillColor=#d7ccc8;strokeColor=#5d4037;" parent="database" vertex="1">
+          <mxGeometry x="1040" y="50" width="440" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="telegram" value="INTEGRACION EXTERNA - Telegram Bot API" style="swimlane;startSize=30;fillColor=#e8eaf6;strokeColor=#3f51b5;fontStyle=1;fontSize=14;horizontal=1;" parent="1" vertex="1">
+          <mxGeometry x="40" y="980" width="1520" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="tg_api" value="REST API Telegram&#xa;api.telegram.org&#xa;sendMessage, getUpdates" style="rounded=1;whiteSpace=wrap;fillColor=#c5cae9;strokeColor=#3f51b5;" parent="telegram" vertex="1">
+          <mxGeometry x="40" y="50" width="320" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="tg_inline" value="Inline Keyboards&#xa;reply_markup JSON&#xa;Botones Dinamicos" style="rounded=1;whiteSpace=wrap;fillColor=#c5cae9;strokeColor=#3f51b5;" parent="telegram" vertex="1">
+          <mxGeometry x="400" y="50" width="320" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="tg_callback" value="callback_query&#xa;Eventos de Pulsacion&#xa;Interaccion de Usuario" style="rounded=1;whiteSpace=wrap;fillColor=#c5cae9;strokeColor=#3f51b5;" parent="telegram" vertex="1">
+          <mxGeometry x="760" y="50" width="320" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="tg_grupo" value="Grupo de Auditoria&#xa;Log Centralizado&#xa;Formato HTML" style="rounded=1;whiteSpace=wrap;fillColor=#c5cae9;strokeColor=#3f51b5;" parent="telegram" vertex="1">
+          <mxGeometry x="1120" y="50" width="360" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="c1" value="HTTP / REST (JSON) - Axios" style="edgeStyle=orthogonalEdgeStyle;fontStyle=1;fontSize=12;strokeWidth=2;strokeColor=#1976d2;" parent="1" source="frontend" target="ctrl_group" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="800" y="260" />
+              <mxPoint x="430" y="260" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c2" value="SQLAlchemy ORM" style="edgeStyle=orthogonalEdgeStyle;fontStyle=1;fontSize=12;strokeWidth=2;strokeColor=#5d4037;" parent="1" source="backend" target="database" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" value="HTTP Requests (Long Polling)&#xa;Sin librerias externas" style="edgeStyle=orthogonalEdgeStyle;fontStyle=1;fontSize=12;strokeWidth=2;strokeColor=#3f51b5;" parent="1" source="daemon_loop" target="tg_api" edge="1">
+          <mxGeometry x="-0.1314" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="220" y="530" />
+              <mxPoint x="-2" y="530" />
+              <mxPoint x="-2" y="950" />
+              <mxPoint x="240" y="950" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c4" value="POST callback_query" style="edgeStyle=orthogonalEdgeStyle;fontStyle=1;fontSize=12;strokeWidth=2;strokeColor=#3f51b5;" parent="1" source="tg_callback" target="daemon_parser" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="960" y="920" />
+              <mxPoint x="344" y="920" />
+              <mxPoint x="344" y="637" />
+              <mxPoint x="480" y="637" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
