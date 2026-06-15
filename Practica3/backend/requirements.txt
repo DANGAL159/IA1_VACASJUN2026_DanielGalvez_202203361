@@ -1,0 +1,15 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+psycopg2-binary
+bcrypt
+python-jose[cryptography]
+python-multipart
+python-dotenv
+requests
+opencv-python-headless
+pytesseract
+playwright
+reportlab
+openpyxl
+pdf2image

@@ -1,0 +1,39 @@
+services:
+  db:
+    image: postgres:15-alpine
+    env_file:
+      - ./backend/.env
+    ports:
+      - "5432:5432"
+    volumes:
+      - p3_postgres_data:/var/lib/postgresql/data
+    restart: always
+
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - ./backend/evidencias:/app/evidencias
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - db
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+    restart: always
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: always
+
+volumes:
+  p3_postgres_data:
