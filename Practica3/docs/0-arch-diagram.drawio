@@ -1,0 +1,148 @@
+<mxfile host="65bd71144e">
+    <diagram name="Arquitectura SmartInvoice OCR y RPA" id="arquitectura-smartinvoice">
+        <mxGraphModel dx="1645" dy="959" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1600" pageHeight="1400" background="none" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="frontend" value="CAPA DE PRESENTACION - Frontend (React + Vite + Nginx)" style="swimlane;startSize=30;fillColor=#e3f2fd;strokeColor=#1976d2;fontStyle=1;fontSize=14;horizontal=1;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="40" width="1520" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="ui_admin" value="Panel Administrativo&#xa;Gestion de Usuarios y Proveedores" style="rounded=1;whiteSpace=wrap;fillColor=#bbdefb;strokeColor=#1976d2;" parent="frontend" vertex="1">
+                    <mxGeometry x="40" y="60" width="260" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="ui_user" value="Panel de Usuario Cliente&#xa;Carga de Facturas (Multipart)" style="rounded=1;whiteSpace=wrap;fillColor=#bbdefb;strokeColor=#1976d2;" parent="frontend" vertex="1">
+                    <mxGeometry x="320" y="60" width="260" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="ui_validacion" value="Interfaz de Validacion Humana&#xa;Aprobacion / Rechazo de OCR" style="rounded=1;whiteSpace=wrap;fillColor=#bbdefb;strokeColor=#1976d2;" parent="frontend" vertex="1">
+                    <mxGeometry x="600" y="60" width="280" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="ui_dashboard" value="Dashboards Analiticos&#xa;Recharts (Metricas en Tiempo Real)" style="rounded=1;whiteSpace=wrap;fillColor=#bbdefb;strokeColor=#1976d2;" parent="frontend" vertex="1">
+                    <mxGeometry x="900" y="60" width="280" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="ui_export" value="Modulo de Exportacion&#xa;Descarga CSV, Excel, PDF" style="rounded=1;whiteSpace=wrap;fillColor=#bbdefb;strokeColor=#1976d2;" parent="frontend" vertex="1">
+                    <mxGeometry x="1200" y="60" width="280" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="backend" value="CAPA DE LOGICA - Backend MVC (Python 3.11 + FastAPI + Uvicorn)" style="swimlane;startSize=30;fillColor=#f3e5f5;strokeColor=#7b1fa2;fontStyle=1;fontSize=14;horizontal=1;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="280" width="1520" height="280" as="geometry"/>
+                </mxCell>
+                <mxCell id="ctrl_group" value="Controladores (routers/)" style="swimlane;startSize=25;fillColor=#fce4ec;strokeColor=#c2185b;fontStyle=1;" parent="backend" vertex="1">
+                    <mxGeometry x="40" y="50" width="440" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="router_auth" value="auth.py&#xa;Login, JWT, Bcrypt" style="rounded=1;whiteSpace=wrap;fillColor=#f8bbd0;strokeColor=#c2185b;" parent="ctrl_group" vertex="1">
+                    <mxGeometry x="20" y="35" width="190" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="router_facturas" value="facturas.py&#xa;CRUD, Extraccion, Confirmacion" style="rounded=1;whiteSpace=wrap;fillColor=#f8bbd0;strokeColor=#c2185b;" parent="ctrl_group" vertex="1">
+                    <mxGeometry x="230" y="35" width="190" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="model_group" value="Modelos ORM (models/)" style="swimlane;startSize=25;fillColor=#e8f5e9;strokeColor=#388e3c;fontStyle=1;" parent="backend" vertex="1">
+                    <mxGeometry x="500" y="50" width="480" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="model_tables" value="USUARIOS | PROVEEDORES | FACTURAS | BITACORAS" style="rounded=1;whiteSpace=wrap;fillColor=#c8e6c9;strokeColor=#388e3c;" parent="model_group" vertex="1">
+                    <mxGeometry x="20" y="35" width="440" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="svc_group" value="Servicios Core (services/)" style="swimlane;startSize=25;fillColor=#fff9c4;strokeColor=#f9a825;fontStyle=1;" parent="backend" vertex="1">
+                    <mxGeometry x="1000" y="50" width="480" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="svc_orchestrator" value="Orquestador de Flujo&#xa;State Locking y Concurrencia" style="rounded=1;whiteSpace=wrap;fillColor=#fff59d;strokeColor=#f9a825;" parent="svc_group" vertex="1">
+                    <mxGeometry x="20" y="35" width="440" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="report_group" value="Generacion de Reportes y Notificaciones" style="swimlane;startSize=25;fillColor=#e0f7fa;strokeColor=#00838f;fontStyle=1;" parent="backend" vertex="1">
+                    <mxGeometry x="40" y="170" width="1440" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="rep_pdf" value="ReportLab&#xa;Generacion PDF" style="rounded=1;whiteSpace=wrap;fillColor=#b2ebf2;strokeColor=#00838f;" parent="report_group" vertex="1">
+                    <mxGeometry x="20" y="35" width="220" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="rep_excel" value="OpenPyxl / CSV&#xa;Generacion Tabular" style="rounded=1;whiteSpace=wrap;fillColor=#b2ebf2;strokeColor=#00838f;" parent="report_group" vertex="1">
+                    <mxGeometry x="260" y="35" width="220" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="rep_smtp" value="Cliente SMTP&#xa;Envio de Correos" style="rounded=1;whiteSpace=wrap;fillColor=#b2ebf2;strokeColor=#00838f;" parent="report_group" vertex="1">
+                    <mxGeometry x="500" y="35" width="220" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="rep_buffer" value="io.BytesIO&#xa;Buffers en Memoria" style="rounded=1;whiteSpace=wrap;fillColor=#b2ebf2;strokeColor=#00838f;" parent="report_group" vertex="1">
+                    <mxGeometry x="740" y="35" width="220" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="engines" value="MOTORES DE INTELIGENCIA ARTIFICIAL Y AUTOMATIZACION" style="swimlane;startSize=30;fillColor=#fff3e0;strokeColor=#ef6c00;fontStyle=1;fontSize=14;horizontal=1;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="640" width="1520" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="eng_ocr" value="Motor OCR (Vision por Computadora)&#xa;OpenCV (Binarizacion) + Pytesseract&#xa;Extraccion de Texto Crudo" style="rounded=1;whiteSpace=wrap;fillColor=#ffcc80;strokeColor=#ef6c00;" parent="engines" vertex="1">
+                    <mxGeometry x="40" y="50" width="340" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="eng_regex" value="Motor de Expresiones Regulares (RegEx)&#xa;Mapeo de NIT, Totales, Impuestos&#xa;Filtrado de Falsos Positivos" style="rounded=1;whiteSpace=wrap;fillColor=#ffcc80;strokeColor=#ef6c00;" parent="engines" vertex="1">
+                    <mxGeometry x="420" y="50" width="340" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="eng_rpa" value="Robot RPA (Playwright)&#xa;Chromium Headless&#xa;Inyeccion via Selectores CSS" style="rounded=1;whiteSpace=wrap;fillColor=#ffcc80;strokeColor=#ef6c00;" parent="engines" vertex="1">
+                    <mxGeometry x="800" y="50" width="340" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="eng_evidence" value="Generador de Evidencias&#xa;Capturas de Pantalla (DOM)&#xa;Guardado en Volumen Fisico" style="rounded=1;whiteSpace=wrap;fillColor=#ffcc80;strokeColor=#ef6c00;" parent="engines" vertex="1">
+                    <mxGeometry x="1180" y="50" width="300" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="database" value="CAPA DE PERSISTENCIA - Base de Datos y Almacenamiento (PostgreSQL 15 + Docker Volumes)" style="swimlane;startSize=30;fillColor=#efebe9;strokeColor=#5d4037;fontStyle=1;fontSize=14;horizontal=1;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="880" width="1520" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="db_relacional" value="PostgreSQL 15&#xa;Integridad Referencial&#xa;Relaciones: Usuarios, Proveedores,&#xa;Facturas, Bitacoras" style="shape=cylinder3;whiteSpace=wrap;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#d7ccc8;strokeColor=#5d4037;fontStyle=1;fontSize=12;" parent="database" vertex="1">
+                    <mxGeometry x="40" y="40" width="340" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="db_volumen" value="Volumen Docker Mapeado&#xa;./backend/evidencias&#xa;Almacenamiento de Capturas RPA&#xa;(timestamp-evidencia.png)" style="shape=folder;whiteSpace=wrap;fillColor=#d7ccc8;strokeColor=#5d4037;fontStyle=1;fontSize=12;tabWidth=80;tabHeight=20;tabPosition=left;" parent="database" vertex="1">
+                    <mxGeometry x="440" y="40" width="380" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="db_archivos" value="Repositorio de Documentos Originales&#xa;Imagenes y PDFs de Facturas&#xa;Subidos via Multipart/form-data" style="shape=folder;whiteSpace=wrap;fillColor=#d7ccc8;strokeColor=#5d4037;fontStyle=1;fontSize=12;tabWidth=80;tabHeight=20;tabPosition=left;" parent="database" vertex="1">
+                    <mxGeometry x="880" y="40" width="380" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="externals" value="INTEGRACIONES EXTERNAS Y DEVOPS" style="swimlane;startSize=30;fillColor=#e8eaf6;strokeColor=#3f51b5;fontStyle=1;fontSize=14;horizontal=1;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="1120" width="1520" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="ext_brevo" value="Brevo (Sendinblue)&#xa;Relay SMTP Externo&#xa;Notificaciones y Alertas" style="rounded=1;whiteSpace=wrap;fillColor=#c5cae9;strokeColor=#3f51b5;" parent="externals" vertex="1">
+                    <mxGeometry x="40" y="50" width="340" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="ext_docker" value="Docker Compose&#xa;Orquestador Global de Contenedores&#xa;Redes y Volumenes Persistentes" style="rounded=1;whiteSpace=wrap;fillColor=#c5cae9;strokeColor=#3f51b5;" parent="externals" vertex="1">
+                    <mxGeometry x="420" y="50" width="380" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="ext_erp" value="Sistema ERP Simulado&#xa;Destino Final del Robot RPA&#xa;(Formulario DOM Virtual)" style="rounded=1;whiteSpace=wrap;fillColor=#c5cae9;strokeColor=#3f51b5;" parent="externals" vertex="1">
+                    <mxGeometry x="840" y="50" width="380" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="c1" value="HTTP / REST (JSON)&#xa;Axios + JWT" style="edgeStyle=orthogonalEdgeStyle;fontStyle=1;fontSize=12;strokeWidth=2;strokeColor=#1976d2;" parent="1" source="frontend" target="backend" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="c2" value="Ejecucion de Servicios&#xa;OCR y RPA" style="edgeStyle=orthogonalEdgeStyle;fontStyle=1;fontSize=12;strokeWidth=2;strokeColor=#ef6c00;" parent="1" source="backend" target="engines" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="c3" value="SQLAlchemy ORM&#xa;Consultas y Transacciones" style="edgeStyle=orthogonalEdgeStyle;fontStyle=1;fontSize=12;strokeWidth=2;strokeColor=#5d4037;" parent="1" source="backend" target="database" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1625" y="420"/>
+                            <mxPoint x="1625" y="960"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="c4" value="Guardado de&#xa;Evidencias Fisicas" style="edgeStyle=orthogonalEdgeStyle;fontStyle=1;fontSize=12;strokeWidth=2;strokeColor=#ef6c00;dashed=1;" parent="1" source="eng_evidence" target="db_volumen" edge="1">
+                    <mxGeometry x="0.1548" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1370" y="818"/>
+                            <mxPoint x="670" y="818"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="c5" value="Inyeccion de Datos&#xa;via Playwright" style="edgeStyle=orthogonalEdgeStyle;fontStyle=1;fontSize=12;strokeWidth=2;strokeColor=#3f51b5;" parent="1" source="eng_rpa" target="ext_erp" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1010" y="846"/>
+                            <mxPoint x="1388" y="846"/>
+                            <mxPoint x="1388" y="1205"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="c6" value="Protocolo SMTP&#xa;Autenticado" style="edgeStyle=orthogonalEdgeStyle;fontStyle=1;fontSize=12;strokeWidth=2;strokeColor=#3f51b5;" parent="1" source="rep_smtp" target="ext_brevo" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="650" y="586"/>
+                            <mxPoint x="-32" y="586"/>
+                            <mxPoint x="-32" y="1080"/>
+                            <mxPoint x="210" y="1080"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
