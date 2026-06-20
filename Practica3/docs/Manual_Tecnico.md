@@ -22,7 +22,30 @@ El objetivo principal de este documento es servir como referencia tecnica para d
 
 El ecosistema cuenta con control de acceso basado en roles (RBAC), generación de reportes multiformato (CSV, Excel, PDF), envío de notificaciones vía SMTP y dashboards analíticos interactivos. Toda la arquitectura está orquestada mediante **Docker Compose**, asegurando persistencia de datos y evidencias operativas.
 
----
+## 1.1 Requerimientos Funcionales
+
+Los requerimientos funcionales definen las acciones específicas, comportamientos y operaciones que el sistema SmartInvoice debe ejecutar para satisfacer las necesidades de procesamiento del negocio:
+
+* **RF-01: Gestión de Autenticación y Autorización (RBAC):** El sistema debe permitir el registro de nuevos usuarios y el inicio de sesión seguro. Debe restringir el acceso a los módulos web mediante un control de accesos basado en roles (Administrador y Usuario Cliente), utilizando tokens criptográficos de sesión.
+* **RF-02: Carga Masiva e Ingesta de Documentos:** El sistema debe proveer una interfaz interactiva del tipo arrastrar y soltar (Drag and Drop) que permita la carga simultánea de múltiples archivos de facturas en formatos PDF, PNG, JPG y JPEG.
+* **RF-03: Procesamiento Inteligente OCR:** El backend debe procesar automáticamente las imágenes o documentos cargados mediante técnicas de binarización y el motor Tesseract para extraer texto libre.
+* **RF-04: Extracción Estricta de Campos Obligatorios:** El motor de expresiones regulares debe mapear y aislar de forma exacta los siguientes 7 campos de la factura: Número de factura, Fecha de emisión, Nombre del proveedor, NIT del proveedor, Subtotal, Impuestos (IVA extraído de forma directa sin cálculos aproximados) y Total.
+* **RF-05: Validación Intermedia y Control de Estados:** El sistema debe presentar los datos extraídos al usuario en una vista de verificación antes de su almacenamiento definitivo, permitiendo la modificación manual de los campos, la aprobación individual/masiva para su registro, o el rechazo explícito del documento.
+* **RF-06: Automatización de Procesos RPA:** Tras la aprobación de un documento, un robot automatizado debe simular de forma asíncrona el ingreso de los datos en un sistema ERP virtual y capturar una pantalla gráfica del proceso como evidencia de la transacción.
+* **RF-07: Notificación y Distribución SMTP:** El sistema debe despachar de forma automática copias estructuradas del reporte de la factura hacia el correo electrónico configurado por el usuario utilizando un servidor SMTP externo.
+* **RF-08: Reportería y Exportación Multiformato:** El sistema debe permitir la descarga local bajo demanda de los reportes administrativos individuales o filtrados en tres formatos de datos específicos: CSV, hojas de cálculo Excel (XLSX) y documentos legibles PDF.
+* **RF-09: Directorio y CRUD de Proveedores:** El administrador debe contar con una interfaz exclusiva para Crear, Leer, Actualizar y Eliminar registros del catálogo de proveedores comerciales.
+* **RF-10: Auditoría y Bitácora Operacional:** El sistema debe registrar de forma inmutable cada evento crítico de procesamiento en la base de datos, almacenando la marca temporal exacta, el usuario responsable, el nombre del documento original, el estado lógico del proceso (Exito, Pendiente, Error o Rechazado) y el detalle técnico obtenido.
+
+## 1.2 Requerimientos No Funcionales
+
+Los requerimientos no funcionales especifican los criterios de calidad, propiedades emergentes y restricciones técnicas que limitan u optimizan la operación del sistema:
+
+* **RNF-01: Seguridad en la Capa de Datos y Sesiones:** Las contraseñas de los usuarios deben almacenarse de forma cifrada en la base de datos mediante algoritmos de hashing unidireccional Bcrypt. La comunicación entre las capas de software debe estar blindada criptográficamente mediante firmas JSON Web Tokens (JWT) cuyas llaves secretas operen estrictamente desde variables de entorno del sistema host.
+* **RNF-02: Portabilidad y Contenedorización:** Toda la solución tecnológica (Base de datos relacional, API de servicios backend y servidor web de distribución frontend) debe estar completamente aislada y empaquetada en imágenes de contenedores independientes utilizando Docker, permitiendo su despliegue agnóstico en entornos locales o nubes computacionales mediante Docker Compose.
+* **RNF-03: Control de Concurrencia y Consistencia:** La interfaz de usuario cliente debe implementar un mecanismo de bloqueo de estado global (Global State Locking) al interactuar con el servidor. Este control debe deshabilitar toda interacción en las tablas durante el envío de payloads al backend, mitigando las condiciones de carrera y la creación de registros duplicados en la base de datos.
+* **RNF-04: Persistencia y Aislamiento de Evidencias:** Los datos relacionales y las métricas operativas deben persistirse de forma permanente en un volumen mapeado de PostgreSQL. De igual forma, las capturas tomadas por el robot RPA deben almacenarse físicamente en un volumen dedicado utilizando una nomenclatura única prefijada con marcas de tiempo Unix de precisión de segundos para evitar colisiones de archivos.
+* **RNF-05: Redes y Despliegue Unificado (Reverse Proxy):** La solución debe acoplar el frontend mediante un proxy inverso configurado en Nginx, centralizando los puntos de acceso público a través de un único puerto de red (Puerto 80), eliminando la dependencia de URLs absolutas quemadas en código y permitiendo la adaptabilidad automática a cualquier dirección IP pública o dominio de internet.
 
 ## 2. Arquitectura Implementada
 
