@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
+// Usamos ruta relativa vacía. Nginx interceptará y enviará al backend
+const API_URL = ''; 
 
 const apiClient = axios.create({
   baseURL: API_URL,

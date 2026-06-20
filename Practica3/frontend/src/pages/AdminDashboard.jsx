@@ -33,8 +33,8 @@ export default function AdminDashboard() {
   const [fechaIniMetricas, setFechaIniMetricas] = useState('');
   const [fechaFinMetricas, setFechaFinMetricas] = useState('');
 
-  // URL del Backend inyectada por Vite (o fallback a local)
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+  // URL vacía para que herede la IP/dominio de la nube de forma dinámica
+  const API_BASE_URL = '';
 
   const cargarDatosAdmin = async () => {
     try {
