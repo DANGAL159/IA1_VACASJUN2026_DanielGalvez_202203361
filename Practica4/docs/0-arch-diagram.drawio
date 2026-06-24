@@ -1,0 +1,128 @@
+<mxfile host="65bd71144e">
+    <diagram name="Arquitectura RoboMaze" id="arquitectura-robomaze">
+        <mxGraphModel dx="2616" dy="1126" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1600" pageHeight="1200" background="none" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="frontend" value="CAPA DE PRESENTACION - Frontend (React 19 + Vite + Axios)" style="swimlane;startSize=30;fillColor=#e3f2fd;strokeColor=#1976d2;fontStyle=1;fontSize=14;horizontal=1;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="40" width="1520" height="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="ui_edit" value="Modo Edicion Interactiva&#xa;Herramientas de Pintura&#xa;(Pared, Borrador, Inicio, Objetivo)" style="rounded=1;whiteSpace=wrap;fillColor=#bbdefb;strokeColor=#1976d2;" parent="frontend" vertex="1">
+                    <mxGeometry x="40" y="50" width="280" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="ui_grid" value="MazeGrid Component&#xa;Renderizado de Cuadricula&#xa;Animacion 35ms por frame" style="rounded=1;whiteSpace=wrap;fillColor=#bbdefb;strokeColor=#1976d2;" parent="frontend" vertex="1">
+                    <mxGeometry x="340" y="50" width="280" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="ui_racing" value="RacingBoard Component&#xa;Modo Carrera Simultanea&#xa;3 Tableros Paralelos" style="rounded=1;whiteSpace=wrap;fillColor=#bbdefb;strokeColor=#1976d2;" parent="frontend" vertex="1">
+                    <mxGeometry x="640" y="50" width="280" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="ui_metrics" value="Panel de Metricas&#xa;Recharts (Graficas de Barras)&#xa;Tiempo y Nodos Explorados" style="rounded=1;whiteSpace=wrap;fillColor=#bbdefb;strokeColor=#1976d2;" parent="frontend" vertex="1">
+                    <mxGeometry x="940" y="50" width="280" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="ui_export" value="Modulo de Exportacion&#xa;Descarga CSV, Excel (XLSX), PDF&#xa;jsPDF + XLSX Libraries" style="rounded=1;whiteSpace=wrap;fillColor=#bbdefb;strokeColor=#1976d2;" parent="frontend" vertex="1">
+                    <mxGeometry x="1240" y="50" width="240" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="backend" value="CAPA DE LOGICA - Backend MVC (Python 3.11 + FastAPI + Uvicorn)" style="swimlane;startSize=30;fillColor=#f3e5f5;strokeColor=#7b1fa2;fontStyle=1;fontSize=14;horizontal=1;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="300" width="1520" height="240" as="geometry"/>
+                </mxCell>
+                <mxCell id="ctrl_group" value="Controladores (Controllers)" style="swimlane;startSize=25;fillColor=#fce4ec;strokeColor=#c2185b;fontStyle=1;" parent="backend" vertex="1">
+                    <mxGeometry x="40" y="50" width="460" height="106" as="geometry"/>
+                </mxCell>
+                <mxCell id="router_mazes" value="MazeController&#xa;GET /api/mazes/{id}&#xa;POST /api/mazes/generate&#xa;POST /api/mazes/custom" style="rounded=1;whiteSpace=wrap;fillColor=#f8bbd0;strokeColor=#c2185b;" parent="ctrl_group" vertex="1">
+                    <mxGeometry x="20" y="35" width="210" height="63" as="geometry"/>
+                </mxCell>
+                <mxCell id="router_solve" value="SolveController&#xa;POST /api/mazes/solve&#xa;Recibe matriz, inicio, objetivos" style="rounded=1;whiteSpace=wrap;fillColor=#f8bbd0;strokeColor=#c2185b;" parent="ctrl_group" vertex="1">
+                    <mxGeometry x="250" y="35" width="190" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="schema_group" value="Schemas de Validacion (Pydantic)" style="swimlane;startSize=25;fillColor=#fff9c4;strokeColor=#f9a825;fontStyle=1;" parent="backend" vertex="1">
+                    <mxGeometry x="520" y="50" width="460" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="schema_solve" value="SolveRequest&#xa;Validacion de Matriz,&#xa;Inicio y Objetivos" style="rounded=1;whiteSpace=wrap;fillColor=#fff59d;strokeColor=#f9a825;" parent="schema_group" vertex="1">
+                    <mxGeometry x="20" y="35" width="200" height="46" as="geometry"/>
+                </mxCell>
+                <mxCell id="schema_generate" value="GenerateRequest&#xa;Filas y Columnas" style="rounded=1;whiteSpace=wrap;fillColor=#fff59d;strokeColor=#f9a825;" parent="schema_group" vertex="1">
+                    <mxGeometry x="240" y="35" width="200" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="svc_group" value="Servicios de Negocio (Services)" style="swimlane;startSize=25;fillColor=#e8f5e9;strokeColor=#388e3c;fontStyle=1;" parent="backend" vertex="1">
+                    <mxGeometry x="1000" y="50" width="480" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="svc_orchestrator" value="Orquestador de Algoritmos&#xa;Seleccion BFS, DFS o A*&#xa;Medicion de Tiempo de Ejecucion" style="rounded=1;whiteSpace=wrap;fillColor=#c8e6c9;strokeColor=#388e3c;" parent="svc_group" vertex="1">
+                    <mxGeometry x="20" y="35" width="440" height="46" as="geometry"/>
+                </mxCell>
+                <mxCell id="cors_config" value="Configuracion CORS y Middleware&#xa;Permisos de Origen Cruzado&#xa;Validacion de Peticiones HTTP" style="rounded=1;whiteSpace=wrap;fillColor=#e1bee7;strokeColor=#7b1fa2;" parent="backend" vertex="1">
+                    <mxGeometry x="40" y="170" width="1440" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="engines" value="MOTORES DE BUSQUEDA E INTELIGENCIA ARTIFICIAL" style="swimlane;startSize=30;fillColor=#fff3e0;strokeColor=#ef6c00;fontStyle=1;fontSize=14;horizontal=1;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="620" width="1520" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="eng_bfs" value="Breadth-First Search (BFS)&#xa;collections.deque (Cola)&#xa;Exploracion por Niveles&#xa;Garantiza Ruta Optima" style="rounded=1;whiteSpace=wrap;fillColor=#ffcc80;strokeColor=#ef6c00;" parent="engines" vertex="1">
+                    <mxGeometry x="40" y="50" width="340" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="eng_dfs" value="Depth-First Search (DFS)&#xa;list (Pila)&#xa;Exploracion en Profundidad&#xa;Backtracking Automatico" style="rounded=1;whiteSpace=wrap;fillColor=#ffcc80;strokeColor=#ef6c00;" parent="engines" vertex="1">
+                    <mxGeometry x="420" y="50" width="340" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="eng_astar" value="A* (A-Star)&#xa;heapq (Cola de Prioridad)&#xa;Heuristica de Manhattan&#xa;Busqueda Informada" style="rounded=1;whiteSpace=wrap;fillColor=#ffcc80;strokeColor=#ef6c00;" parent="engines" vertex="1">
+                    <mxGeometry x="800" y="50" width="340" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="eng_generator" value="Generador Procedural de Laberintos&#xa;Algoritmo de Tallado Recursivo&#xa;Laberintos Perfectos (DFS-based)&#xa;Garantiza Solubilidad" style="rounded=1;whiteSpace=wrap;fillColor=#ffcc80;strokeColor=#ef6c00;" parent="engines" vertex="1">
+                    <mxGeometry x="1180" y="50" width="300" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="persistence" value="CAPA DE PERSISTENCIA - Repositorios en Memoria (Sin Base de Datos)" style="swimlane;startSize=30;fillColor=#efebe9;strokeColor=#5d4037;fontStyle=1;fontSize=14;horizontal=1;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="860" width="1520" height="152" as="geometry"/>
+                </mxCell>
+                <mxCell id="repo_predefined" value="PREDEFINED_MAZES (Diccionario Global)&#xa;Catalogo de 5 Laberintos Predefinidos&#xa;Almacenados en Memoria RAM&#xa;Matrices + Puntos de Inicio/Objetivo" style="shape=cylinder3;whiteSpace=wrap;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#d7ccc8;strokeColor=#5d4037;fontStyle=1;fontSize=12;" parent="persistence" vertex="1">
+                    <mxGeometry x="40" y="40" width="460" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="repo_custom" value="custom_mazes (Instancia de Repositorio)&#xa;Laberintos Generados o Editados por Usuario&#xa;Persistencia Temporal en Sesion&#xa;Import/Export via JSON" style="shape=cylinder3;whiteSpace=wrap;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#d7ccc8;strokeColor=#5d4037;fontStyle=1;fontSize=12;" parent="persistence" vertex="1">
+                    <mxGeometry x="540" y="40" width="460" height="99" as="geometry"/>
+                </mxCell>
+                <mxCell id="repo_state" value="Estado de Aplicacion&#xa;Variables Globales de Python&#xa;Sin Persistencia entre Reinicios" style="shape=cylinder3;whiteSpace=wrap;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#d7ccc8;strokeColor=#5d4037;fontStyle=1;fontSize=12;" parent="persistence" vertex="1">
+                    <mxGeometry x="1040" y="40" width="440" height="83" as="geometry"/>
+                </mxCell>
+                <mxCell id="c1" value="HTTP / REST (JSON)&#xa;Axios + Peticiones Asincronas" style="edgeStyle=orthogonalEdgeStyle;fontStyle=1;fontSize=12;strokeWidth=2;strokeColor=#1976d2;" parent="1" source="frontend" target="backend" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="c2" value="Ejecucion de Algoritmos&#xa;BFS, DFS, A*" style="edgeStyle=orthogonalEdgeStyle;fontStyle=1;fontSize=12;strokeWidth=2;strokeColor=#ef6c00;" parent="1" source="backend" target="engines" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="c3" value="Lectura/Escritura&#xa;Diccionarios en Memoria" style="edgeStyle=orthogonalEdgeStyle;fontStyle=1;fontSize=12;strokeWidth=2;strokeColor=#5d4037;" parent="1" source="backend" target="persistence" edge="1">
+                    <mxGeometry x="0.1276" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1689" y="420"/>
+                            <mxPoint x="1689" y="930"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="c4" value="Generacion Procedural&#xa;Guardado en custom_mazes" style="edgeStyle=orthogonalEdgeStyle;fontStyle=1;fontSize=12;strokeWidth=2;strokeColor=#ef6c00;dashed=1;" parent="1" source="eng_generator" target="repo_custom" edge="1">
+                    <mxGeometry x="0.1548" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1370" y="810"/>
+                            <mxPoint x="1060" y="810"/>
+                            <mxPoint x="1060" y="950"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="c5" value="Carga de Laberintos&#xa;Predefinidos" style="edgeStyle=orthogonalEdgeStyle;fontStyle=1;fontSize=12;strokeWidth=2;strokeColor=#5d4037;dashed=1;" parent="1" source="repo_predefined" target="backend" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="-68" y="940"/>
+                            <mxPoint x="-68" y="568"/>
+                            <mxPoint x="270" y="568"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="c6" value="Secuencia de Nodos&#xa;y Ruta Final" style="edgeStyle=orthogonalEdgeStyle;fontStyle=1;fontSize=12;strokeWidth=2;strokeColor=#ef6c00;dashed=1;" parent="1" source="engines" target="frontend" edge="1">
+                    <mxGeometry x="0.2" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1625" y="700"/>
+                            <mxPoint x="1625" y="130"/>
+                        </Array>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

@@ -61,6 +61,8 @@ Los requerimientos no funcionales especifican las restricciones técnicas, crite
 
 ## 2. Arquitectura Implementada
 
+![](./images/arquitectura.png)
+
 El código fuente respeta la separación de responsabilidades, aislando los motores de búsqueda en el backend y delegando la visualización y el estado de la interfaz a una aplicación de página única.
 
 ```
